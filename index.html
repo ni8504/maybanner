@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FitClub • May Promo Banner</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- RESET ---------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; font-family: 'Montserrat', sans-serif; }
+
+    /* ---------- CONTAINER ---------- */
+    .banner-container {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      color: #044d29; /* deep green */
+    }
+
+    /* ---------- BACKGROUND ---------- */
+    .banner-background {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #e8ffec 0%, #c2e9fb 100%);
+      z-index: 0;
+    }
+    .banner-background::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1552308995-9d91c8ad9d33?auto=format&fit=crop&w=1920&q=80'); /* subtle floral */
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+      filter: blur(2px);
+    }
+
+    /* ---------- FALLING PETALS ---------- */
+    .petals { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+    .petal  { position: absolute; top: -10%; user-select: none; animation: fall linear infinite; transform-origin: center; }
+    @keyframes fall { 0% { transform: translateY(0) rotate(0deg);} 100% { transform: translateY(110vh) rotate(360deg);} }
+
+    /* ---------- CONTENT ---------- */
+    .banner-content { position: relative; z-index: 2; max-width: 800px; padding: 20px; }
+    .main-message  { font-size: 3em; margin-bottom: 0.5em; text-shadow: 2px 2px 6px rgba(255,255,255,0.7); padding: 0 20px; }
+    .highlights    { font-size: 1.5em; line-height: 1.4; padding: 0 20px; }
+    .highlights div { margin-bottom: 0.5em; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) { .main-message { font-size: 2em; } .highlights { font-size: 1.2em; } }
+    @media (max-width: 480px) { .main-message { font-size: 1.5em; } .highlights { font-size: 1em; } }
+  </style>
+</head>
+<body>
+  <div class="banner-container">
+    <div class="banner-background"></div>
+    <div class="petals" aria-hidden="true"></div>
+
+    <div class="banner-content">
+      <div class="main-message">May Membership Special!</div>
+      <div class="highlights">
+        <div>🎉 Join in May &amp; pay <strong>$10/month</strong></div>
+        <div>💵 Your first three months—huge savings!</div>
+        <div>🏆 Voted <strong>Best in Springfield</strong></div>
+        <div>💚 Proudly <strong>Locally Owned</strong></div>
+        <div>⭐ Home to <strong>Award‑Winning Staff</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PETAL GENERATOR -->
+  <script>
+    const petalContainer = document.querySelector('.petals');
+    const petals = 45;
+    for (let i = 0; i < petals; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.textContent = '🌸';
+      p.style.fontSize = (Math.random() * 1.2 + 0.6) + 'em';
+      p.style.left      = Math.random() * 100 + '%';
+      p.style.animationDuration = (Math.random() * 8 + 7) + 's';
+      p.style.animationDelay    = Math.random() * 10 + 's';
+      p.style.opacity   = Math.random() * 0.5 + 0.5;
+      petalContainer.appendChild(p);
+    }
+  </script>
+</body>
+</html>
